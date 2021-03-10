@@ -42,14 +42,22 @@ room['treasure'].s_to = room['narrow']
 
 player = Player(room['outside'])
 
-print(player)
+# print(player)
 # Write a loop that:
 #
+current_room = player.location
+choice = "x"
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
+while choice != "q":
+    print(player)
+
 # * Waits for user input and decides what to do.
-#
+#   
+    choice = input("pick a direction to go:")
+    print(choice)
 # If the user enters a cardinal direction, attempt to move to the room there.
+
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.

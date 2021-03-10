@@ -7,7 +7,7 @@ class Room:
         self.description = description
 
     def __str__(self):
-        return f"You are in the {self.name}:\n\n\t{self.description}"
+        return f"You are in the {self.name}:\n\n\t{self.description}\n"
 
 office = Room("office", "your man-made prison with a beautiful outlook of nature")
 
