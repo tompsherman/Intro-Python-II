@@ -45,19 +45,25 @@ player = Player(room['outside'])
 # print(player)
 # Write a loop that:
 #
-current_room = player.location
+current_room = player.room
 choice = "x"
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
-while choice != "q":
+while choice.lower() != "q":
     print(player)
 
 # * Waits for user input and decides what to do.
 #   
     choice = input("pick a direction to go:")
-    print(choice)
+    
 # If the user enters a cardinal direction, attempt to move to the room there.
-
+    if choice.lower() == "n" or choice.lower() == "s" or choice.lower() == "w" or choice.lower() == "e":
+        player.move(choice.lower())
+        # player.room = current_room
+        # print(f"\n {current_room}\n\n")
+    else:
+        print("\n don't be a bird-brain, pick a cardinal direction...\n")
+        
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
