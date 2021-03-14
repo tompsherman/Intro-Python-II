@@ -45,7 +45,7 @@ player = Player(room['outside'])
 # print(player)
 # Write a loop that:
 #
-current_room = player.room
+current_room = player.current_room
 choice = "x"
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
@@ -61,6 +61,8 @@ while choice.lower() != "q":
         player.move(choice.lower())
         # player.room = current_room
         # print(f"\n {current_room}\n\n")
+    elif choice.lower() == "q":
+        print("\nadventures are not for the weak of heart\n")
     else:
         print("\n don't be a bird-brain, pick a cardinal direction...\n")
         

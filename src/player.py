@@ -4,22 +4,22 @@
 
 class Player:
     
-    def __init__(self, room):
-        self.room = room
+    def __init__(self, current_room):
+        self.current_room = current_room
 
     def move(self, direction):
         bearing = f"{direction}_to"
 
-        if hasattr(self.room, bearing):
-            new_room = getattr(self.room, bearing)
-            # print(new_room)
-            self.room = new_room
+        if hasattr(self.current_room, bearing):
+            new_room = getattr(self.current_room, bearing)
+            # print(new_current_room)
+            self.current_room = new_room
             # print(self.room)
         else:
             print("DANGER! DANGER! TURN AROUND!")
 
     def __str__(self):
-        return f"{self.room}"
+        return f"{self.current_room}"
 
 tom = Player("office")
 
