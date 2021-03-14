@@ -4,8 +4,9 @@
 
 class Player:
     
-    def __init__(self, current_room):
+    def __init__(self, current_room, item_inventory):
         self.current_room = current_room
+        self.item_inventory = item_inventory
 
     def move(self, direction):
         bearing = f"{direction}_to"
@@ -19,8 +20,19 @@ class Player:
             print("DANGER! DANGER! TURN AROUND!")
 
     def __str__(self):
-        return f"{self.current_room}"
+        output = f"{self.current_room}"
 
-tom = Player("office")
+        if len(self.item_inventory) > 0:
+
+            for i, item in enumerate(self.item_inventory):
+
+                output += f"\nyou have {len(self.item_inventory)} items in inventory:\n\t [{i}]   {item}\n"
+
+        else: 
+            output += f"\nyou have no items in inventory\n"
+
+        return output
+
+tom = Player("office", [])
 
 # print(tom)
