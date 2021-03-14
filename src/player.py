@@ -19,6 +19,12 @@ class Player:
         else:
             print("DANGER! DANGER! TURN AROUND!")
 
+    def add_item(self, item):
+        self.item_inventory.append(item)
+
+    def remove_item(self, item):
+        self.item_inventory.remove(item)
+
     def __str__(self):
         output = f"{self.current_room}"
 
@@ -26,7 +32,7 @@ class Player:
 
             for i, item in enumerate(self.item_inventory):
 
-                output += f"\nyou have {len(self.item_inventory)} items in inventory:\n\t [{i}]   {item}\n"
+                output += f"\nyou have {len(self.item_inventory)} item(s) in inventory:\n\t [{i}]   {item}\n"
 
         else: 
             output += f"\nyou have no items in inventory\n"

@@ -5,7 +5,7 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+                     "North of you, the cave mount beckons", ["bones"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -40,9 +40,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(room['outside'], [])
+player = Player(room['outside'], ["lamp"])
 
-# print(player)
 # Write a loop that:
 #
 current_room = player.current_room
@@ -56,15 +55,33 @@ while choice.lower() != "q":
 #   
     choice = input("pick a direction to go:")
     
+    if len(choice.split()) <= 1:
 # If the user enters a cardinal direction, attempt to move to the room there.
-    if choice.lower() == "n" or choice.lower() == "s" or choice.lower() == "w" or choice.lower() == "e":
-        player.move(choice.lower())
-        # player.room = current_room
-        # print(f"\n {current_room}\n\n")
-    elif choice.lower() == "q":
-        print("\nadventures are not for the weak of heart\n")
+        if choice.lower() == "n" or choice.lower() == "s" or choice.lower() == "w" or choice.lower() == "e":
+            player.move(choice.lower())
+            # player.room = current_room
+            # print(f"\n {current_room}\n\n")
+        elif choice.lower() == "q":
+            print("\nadventures are not for the weak of heart\n")
+        else:
+            print("\n don't be a bird-brain, pick a cardinal direction...\n")
     else:
-        print("\n don't be a bird-brain, pick a cardinal direction...\n")
+        command = choice.split()
+        if command[0] == "get" or command[0] == "take":
+            # for item in room.items:
+            player.add_item(command[1])
+            Room.remove_item(current_room, command[1])
+            print(f"\n you picked up {command[1]}\n")
+            # if command.index(command[1]) is True:
+            #     print(f"you picked up {command[1]}")
+            # else:
+            #     print("\nyou cannot pick something up that's not there!\n")
+        elif command[0] == "drop" or command[0] == "leave":
+            Room.add_item(current_room, command[1])
+            player.remove_item(command[1])
+            print(f"\nyou dropped {command[1]}\n")
+        else:
+            print(f"\n{choice.split()}\nthis is a two word command, eh?\n")
         
 # Print an error message if the movement isn't allowed.
 #
