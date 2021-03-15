@@ -29,10 +29,9 @@ class Player:
         output = f"{self.current_room}"
 
         if len(self.item_inventory) > 0:
-
+            output += f"\nyou have {len(self.item_inventory)} item(s) in inventory:\n"
             for i, item in enumerate(self.item_inventory):
-
-                output += f"\nyou have {len(self.item_inventory)} item(s) in inventory:\n\t [{i}]   {item}\n"
+                output += f"\t [{i}]   {item}\n"
 
         else: 
             output += f"\nyou have no items in inventory\n"

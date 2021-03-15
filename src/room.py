@@ -11,14 +11,15 @@ class Room:
         self.items.append(item)
 
     def remove_item(self, item):
-        self.items.remove(item)
-        
+            self.items.remove(item)
+
     def __str__(self):
         output = f"You are in the {self.name}:\n\n\t{self.description}\n"
 
         if len(self.items) > 0:
+            output += f"item(s) available in this room:\n"
             for i, item in enumerate(self.items):
-                output += f"item(s) available in this room:\n\t[{i}]  {item}\n"
+                output += f"\t[{i}]  {item}\n"
         else:
             output += f"there are no items to be found"
 

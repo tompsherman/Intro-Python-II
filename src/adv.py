@@ -53,7 +53,7 @@ while choice.lower() != "q":
 
 # * Waits for user input and decides what to do.
 #   
-    choice = input("pick a direction to go:")
+    choice = input("what would you like to do?")
     
     if len(choice.split()) <= 1:
 # If the user enters a cardinal direction, attempt to move to the room there.
@@ -67,21 +67,38 @@ while choice.lower() != "q":
             print("\n don't be a bird-brain, pick a cardinal direction...\n")
     else:
         command = choice.split()
+        error_message = ""
         if command[0] == "get" or command[0] == "take":
             # for item in room.items:
-            player.add_item(command[1])
-            Room.remove_item(current_room, command[1])
-            print(f"\n you picked up {command[1]}\n")
+            try:
+                Room.remove_item(current_room, command[1])
+            except ValueError:
+                print("\n!!! you cannot take what is not there !!!\n")
+                error_message = True
+
+            if error_message == True:
+                next
+            else:
+                player.add_item(command[1])
+                print(f"\n you picked up {command[1]}\n")
             # if command.index(command[1]) is True:
             #     print(f"you picked up {command[1]}")
             # else:
             #     print("\nyou cannot pick something up that's not there!\n")
         elif command[0] == "drop" or command[0] == "leave":
-            Room.add_item(current_room, command[1])
-            player.remove_item(command[1])
-            print(f"\nyou dropped {command[1]}\n")
+            try:
+                player.remove_item(command[1])
+            except ValueError:
+                print("\n!!! you cannot drop what you don't have !!!\n")
+                error_message = True
+            
+            if error_message == True:
+                next
+            else:
+                Room.add_item(current_room, command[1])
+                print(f"\nyou dropped {command[1]}\n")
         else:
-            print(f"\n{choice.split()}\nthis is a two word command, eh?\n")
+            print(f"\n\nunrecognized command, try again\n\n")
         
 # Print an error message if the movement isn't allowed.
 #
