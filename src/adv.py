@@ -59,8 +59,6 @@ while choice.lower() != "q":
 # If the user enters a cardinal direction, attempt to move to the room there.
         if choice.lower() == "n" or choice.lower() == "s" or choice.lower() == "w" or choice.lower() == "e":
             player.move(choice.lower())
-            # player.room = current_room
-            # print(f"\n {current_room}\n\n")
         elif choice.lower() == "q":
             print("\nadventures are not for the weak of heart\n")
         else:
@@ -81,10 +79,6 @@ while choice.lower() != "q":
             else:
                 player.add_item(command[1])
                 print(f"\n you picked up {command[1]}\n")
-            # if command.index(command[1]) is True:
-            #     print(f"you picked up {command[1]}")
-            # else:
-            #     print("\nyou cannot pick something up that's not there!\n")
         elif command[0] == "drop" or command[0] == "leave":
             try:
                 player.remove_item(command[1])
